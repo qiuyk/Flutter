@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:layoutui/widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  // runApp(const MyApp());
+  runApp(const TestWidgetApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
               children: [
                 Container(
                   padding: const EdgeInsets.only(bottom: 8.0),
-                  child: Text(
+                  child: const Text(
                     'Oeschinen Lake Campground',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
