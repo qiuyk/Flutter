@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:layoutui/widget.dart';
+import 'package:layoutui/route.dart';
 
 void main() {
   // runApp(const MyApp());
-  runApp(const TestWidgetApp());
+  // runApp(const TestWidgetApp());
+  runApp(const TestRouteApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +13,6 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    
     //标题部分
     Widget titleSection = Container(
       padding: const EdgeInsets.all(32.0),

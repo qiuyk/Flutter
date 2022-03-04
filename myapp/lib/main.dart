@@ -1,20 +1,19 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
-void main() => runApp(new MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final wordPair = new WordPair.random();
-    return new MaterialApp(
+    return MaterialApp(
       title: 'Startup Name Generator',
-      theme: new ThemeData(
+      theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: new RandomWords(),
+      home: const RandomWords(),
     );
   }
   
@@ -22,8 +21,10 @@ class MyApp extends StatelessWidget {
 
 //有状态的类
 class RandomWords extends StatefulWidget {
+  const RandomWords({Key? key}) : super(key: key);
+
   @override
-  createState() => new RandomWordsState();
+  createState() => RandomWordsState();
 }
 
 class RandomWordsState extends State<RandomWords>{
@@ -33,16 +34,16 @@ class RandomWordsState extends State<RandomWords>{
   //增大字体大小
   final _biggerFont = const TextStyle(fontSize: 18.0);
 
-  final _saved = new Set<WordPair>();
+  final _saved = Set<WordPair>();
 
   @override
   Widget build(BuildContext context){
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Startup Name Generator'),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Startup Name Generator'),
         // 右上角的列表图标
         actions: <Widget>[
-          new IconButton(onPressed: _pushSaved, icon: new Icon(Icons.list)),
+          IconButton(onPressed: _pushSaved, icon: const Icon(Icons.list)),
         ],
       ),
       body: _buildSuggestions(),
@@ -52,12 +53,12 @@ class RandomWordsState extends State<RandomWords>{
   void _pushSaved(){
     //建立一个路由将其推如到导航管理器栈中，此操作会切换页面以显示新路由
     Navigator.of(context).push(
-      new MaterialPageRoute(
+      MaterialPageRoute(
         //生成listtitle
         builder: (context) {
           final tiles = _saved.map((pair) {
-              return new ListTile(
-                title: new Text(
+              return ListTile(
+                title: Text(
                   pair.asPascalCase,
                   style: _biggerFont,
                 ),
@@ -71,11 +72,11 @@ class RandomWordsState extends State<RandomWords>{
           ).toList();
 
           //返回一个 Scaffold，其中包含名为“Saved Suggestions”的新路由的应用栏。 新路由的body由包含ListTiles行的ListView组成; 每行之间通过一个分隔线分隔。
-          return new Scaffold(
-            appBar: new AppBar(
-              title: new Text('Save Suggestions'),
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Save Suggestions'),
             ),
-            body: new ListView(children: divided),
+            body: ListView(children: divided),
           );
         },
       )
@@ -85,13 +86,13 @@ class RandomWordsState extends State<RandomWords>{
   //构建显示建议单词对的ListView
   Widget _buildSuggestions(){
 
-    return new ListView.builder(
+    return ListView.builder(
       padding: const EdgeInsets.all(16.0),
       //对于每个建议的单词对都会调用一次itemBuilder，然后将单词对添加到ListTitle行中
       //在偶数行，该函数会为单词对添加一个ListTitle row
       //在奇数行，该函数会添加一个分割线widget，来分隔相邻的词对。
       itemBuilder: (context, i) {
-        if(i.isOdd) return new Divider();
+        if(i.isOdd) return const Divider();
 
         //表示i除以2，返回值是整形（向下取整）
         final index = i ~/2;
@@ -107,12 +108,12 @@ class RandomWordsState extends State<RandomWords>{
 
   Widget _buildRow(WordPair pair){
     final alreadySaved = _saved.contains(pair);
-    return new ListTile(
-      title: new Text(
+    return ListTile(
+      title: Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
-      trailing: new Icon(
+      trailing: Icon(
         alreadySaved ? Icons.favorite : Icons.favorite_border,
         color: alreadySaved ? Colors.red : null,
       ),
