@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:layoutui/route.dart';
+import 'package:layoutui/widget.dart';
+
+import 'package.dart';
 
 void main() {
+
+  //捕获全局异常
+  FlutterError.onError = (FlutterErrorDetails details) => {
+    reortError(details);
+  };
   // runApp(const MyApp());
-  // runApp(const TestWidgetApp());
-  runApp(const TestRouteApp());
+  runApp(const TestWidgetApp());
+  // runApp(const TestRouteApp());
+  // runApp(const PackageWidget());
+}
+
+void reortError(FlutterErrorDetails details){
+  print(details);
 }
 
 class MyApp extends StatelessWidget {

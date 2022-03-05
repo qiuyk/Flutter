@@ -28,14 +28,14 @@ class TestRouteApp extends StatelessWidget {
       },
       //打开命名路由时调用,不过如果指定路由名称已经在路由表routes中注册,则不会调用,没有注册的都会在这里生成新的路由
       //注意，onGenerateRoute 只会对命名路由生效。
-      onGenerateRoute:(RouteSettings settings){
-        return MaterialPageRoute(builder: (context){
-          String? routeName = settings.name;
-          // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
-          // 引导用户登录；其它情况则正常打开路由。
-          }
-        );
-      },
+      // onGenerateRoute:(RouteSettings settings){
+      //   return MaterialPageRoute(builder: (context){
+      //     String? routeName = settings.name;
+      //     // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
+      //     // 引导用户登录；其它情况则正常打开路由。
+      //     }
+      //   );
+      // },
       // navigatorObservers: [], //监听路由跳转
       // onUnknownRoute: ,//在打开一个不存在的路由时调用
     );
